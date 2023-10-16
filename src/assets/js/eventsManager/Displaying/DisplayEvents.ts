@@ -2,12 +2,15 @@
 import {eventTemp} from "../../htmlTemplates/eventTemp.ts";
 import {DisplaySlots} from "./DisplaySlots.ts";
 import {DisplayAttendees} from "./DisplayAttendees.ts";
+import {AddAttendeesListener} from "../../UsersActionsListeners.ts";
 
 export function DisplayEvents(events: ExtendedEvent[]) {
 
     for (let event of events){
 
         createEventCard(event);
+        //add Listener for attendee and dates
+        AddAttendeesListener(event.id);
     }
 
 }

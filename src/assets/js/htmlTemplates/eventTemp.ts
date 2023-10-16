@@ -1,6 +1,5 @@
 ﻿
 export let eventTemp = `        
-        <div class="card didlydooEvent">
             <div class="card-header">
                 <h2 class="eventName">Event NAme</h2>
                 <h3 class="eventAuthor"> Author name</h3>
@@ -20,8 +19,7 @@ export let eventTemp = `
             <div class="card-footer">
             <button class="btn btn-secondary addAttendeesBtn">Add Attendees</button>
             <button class="btn btn-secondary addDatesBtn">Add Dates</button>
-            </div>
-        </div>`
+            </div>`
 
 
 

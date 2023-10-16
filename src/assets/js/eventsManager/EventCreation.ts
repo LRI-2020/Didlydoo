@@ -10,7 +10,7 @@ function formatDay(day:number):string{
     return day<10 ? `0${day}`:`${day}`;
 }
 
-export function CreateEvent(name:string,author:string,description:string,dates:Date[]){
+export async function CreateEvent(name:string,author:string,description:string,dates:Date[]){
     
      let formattedDates : string[]=[];
      
@@ -35,11 +35,12 @@ export function CreateEvent(name:string,author:string,description:string,dates:D
 "Accept-Encoding": "gzip, deflate, br"};
     const myHeaders = new Headers(httpHeaders);
 
-    fetch(eventsHost, {
+    return fetch(eventsHost, {
         method: "POST",
         body: JSON.stringify(bodyRequest),
         headers: myHeaders
     }).then(res => res.json())
+        .then(data => data.id)
         .catch(e => console.log(e.message));
      
 }
