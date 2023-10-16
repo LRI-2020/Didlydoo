@@ -47,7 +47,9 @@ export function SetAllListeners() {
         for (let dateField of dateFields) {
             dates.push(new Date(dateField.value));
         }
-        CreateEvent(name, author, description, dates)
+        CreateEvent(name, author, description, dates);
+        createEventForm.classList.add("d-none");
+
     });
 }
 
