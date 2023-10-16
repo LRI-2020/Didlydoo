@@ -14,6 +14,7 @@ export function DisplayEvents(events: ExtendedEvent[]) {
 export function createEventCard(event: ExtendedEvent) {
     let container: HTMLDivElement = document.querySelector(".eventsContainer")!;
     let card = document.createElement('div');
+    card.setAttribute("id",event.id);
     card.classList.add("card", "didlydooEvent");
     card.innerHTML = eventTemp;
     FulfillCard(event, card);
