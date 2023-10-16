@@ -30,6 +30,6 @@ export function convertToSlot(data:any):ExtendedSlot|undefined{
 }
 
 export function convertToAttendee(data:any):ExtendedAttendee|undefined{
-    return data ? new attendee(data.name, data.available ? data.available : null) : undefined
+    return data ? new attendee(data.name, data.available !==undefined ? data.available : null) : undefined
 }
 

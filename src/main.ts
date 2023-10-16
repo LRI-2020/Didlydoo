@@ -3,11 +3,11 @@ import './style.css';
 // Import all of Bootstrap's JS
 // @ts-ignore
 import * as bootstrap from 'bootstrap';
-import {GetAllEvents} from "./assets/js/eventsManager/eventsManager.ts";
+import {GetAllEvents} from "./assets/js/eventsManager/GetEvents.ts";
 
-let res = await GetAllEvents();
+await GetAllEvents();
 
-console.log(res);
+
 
 
 
