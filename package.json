@@ -4,13 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "homepage": "https://LRI-2020.github.io/Didlydoo/",
-
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "predeploy" : "npm run build",
-    "deploy" : "gh-pages -d dist"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
     "gh-pages": "^6.0.0",
@@ -22,6 +21,8 @@
     "@popperjs/core": "^2.11.8",
     "@types/bootstrap": "^5.2.7",
     "@types/node": "^20.8.5",
-    "bootstrap": "^5.3.2"
+    "@types/uuid": "^9.0.5",
+    "bootstrap": "^5.3.2",
+    "uuid": "^9.0.1"
   }
 }

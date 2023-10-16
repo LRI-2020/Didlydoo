@@ -2,13 +2,13 @@
 import {convertToExtendedEvent} from "./converters.ts";
 import {attendee} from "../classes/attendee.ts";
 import {DisplayEvents} from "./Displaying/DisplayEvents.ts";
+import {eventsHost} from "../appConfig.js.ts";
 
-export let apiHost = "http://localHost:3000/api/";
-let eventsHots = `${apiHost}events/`;
+
 
 export async function GetAllEvents(): Promise<ExtendedEvent[]> {
 
-    return fetch(eventsHots)
+    return fetch(eventsHost)
         .then(r => r.json())
         .then((data) => Array.isArray(data) ? data.map(d => convertToExtendedEvent(d)) : [])
         .then((data) => {

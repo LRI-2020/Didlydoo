@@ -12,6 +12,27 @@
 <div class="container py-4 px-3 mx-auto">
     <div class="eventsContainer">
     </div>
+    
+    <button class="btn btn-secondary addEvent">Add an Event</button>
+    
+    <form class="createEvent">
+        <label for="eventName">Name : </label>
+        <input class="text" id="eventName" name="eventName" required>
+        <label for="eventAuthor">Author : </label>
+        <input class="text" id="eventAuthor" name="eventAuthor" required>
+        <label for="eventDescription">Description : </label>
+        <input class="text" id="eventDescription" name="eventDescription">
+        <fieldset class="datesList">
+            <input type="date" name="createEventDate" required>
+            <button class="addDate">Add a Date</button>
+        </fieldset>
+        <fieldset class="attendeesList">
+            <input type="text" name="eventAttendee">
+            <button class="addAttendee">Add an attendee</button>
+        </fieldset>
+        <button type="submit" class="btn btn-secondary createEventBtn">Create Event</button>
+    </form>
+    
 </div>
 </body>
 </html>
