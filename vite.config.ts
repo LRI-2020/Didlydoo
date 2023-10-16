@@ -1,7 +1,7 @@
 ﻿import path from "path";
 
 export default {
-    base: "/TechTest",
+    base: "/Didlydoo",
     root: path.resolve(__dirname, ''),
     resolve: {
         alias: {
