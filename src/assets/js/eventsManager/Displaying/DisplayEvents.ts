@@ -2,9 +2,12 @@
 import {eventTemp} from "../../HtmlManager/templates.ts";
 import {DisplaySlots} from "./DisplaySlots.ts";
 import {DisplayAttendees} from "./DisplayAttendees.ts";
-import {AddAttendeesListener, CancelButtonListener, SaveAttendeesListener} from "../../UsersActionsListeners.ts";
+import {AddAttendeesListener, CancelButtonListener, EditAnEventListener, SaveAttendeesListener, SaveEventListener} from "../../UsersActionsListeners.ts";
 
 export function DisplayEvents(events: ExtendedEvent[]) {
+
+    let container: HTMLDivElement = document.querySelector(".eventsContainer")!;
+    container.innerHTML="";
 
     for (let event of events){
 
@@ -13,6 +16,8 @@ export function DisplayEvents(events: ExtendedEvent[]) {
         AddAttendeesListener(event);
         SaveAttendeesListener(event);
         CancelButtonListener(event);
+        EditAnEventListener(event);
+        SaveEventListener(event);
     }
 
 }

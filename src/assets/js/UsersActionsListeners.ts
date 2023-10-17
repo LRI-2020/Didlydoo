@@ -4,7 +4,7 @@ import {CreateEvent, formatDay, formatMonth} from "./eventsManager/Crud/EventCre
 import {GetAllEvents} from "./eventsManager/Crud/GetEvents.ts";
 import {ExtendedEvent} from "./classes/didlydooEvents.ts";
 import {CreateAttendee, DisplayAddAttendeeForm} from "./eventsManager/Crud/addAttendee.ts";
-import {ExtendedSlot} from "./classes/slot.ts";
+import {EventPropValid, UpdateEvent} from "./eventsManager/Crud/UpdateEvent.ts";
 
 let createEventBtn: HTMLButtonElement = document.querySelector(".addEvent")!;
 let createEventForm: HTMLFormElement = document.querySelector(".createEvent")!;
@@ -113,7 +113,6 @@ function CreateEventListener(createForm: HTMLFormElement) {
     });
 
 }
-
 function AddDateInputListener(addDateButton: HTMLButtonElement, dateList: HTMLFieldSetElement) {
 
     addDateButton.addEventListener("click", function (e) {
@@ -124,14 +123,52 @@ function AddDateInputListener(addDateButton: HTMLButtonElement, dateList: HTMLFi
         dateList.appendChild(input);
     });
 }
+
 export function EditAnEventListener(event:ExtendedEvent){
-    let evenCard:HTMLDivElement = document.getElementById(event.id)!;
-    let editEventBtn: HTMLButtonElement = evenCard.querySelector(".editEventBtn")!;
     
+    let evenCard = document.getElementById(event.id)!;
+    let editEventBtn: HTMLButtonElement = evenCard.querySelector(".editEventBtn")!;
+    let saveEventBtn: HTMLButtonElement = evenCard.querySelector(".saveEventBtn")!;
+
     editEventBtn.addEventListener('click',function(){
-        DisplayEditEventForm();
+        editEventBtn.classList.add("d-none");
+        saveEventBtn.classList.remove("d-none");
+        let eventCard = document.getElementById(event.id)!;
+        let editableElements:NodeListOf<HTMLElement> = eventCard.querySelectorAll(".card-header .editableEventProp")!;
+        MakeFieldsEditable(editableElements);
+
     })
 }
+export function MakeFieldsEditable(editableElements:NodeListOf<HTMLElement>) {
+    
+    editableElements.forEach(el => {
+        el.contentEditable="true";
+    })
+}
+export function SaveEventListener(event:ExtendedEvent){
+    let eventCard = document.getElementById(event.id)!;
+    let editEventBtn: HTMLButtonElement = eventCard.querySelector(".editEventBtn")!;
+    let saveEventBtn:HTMLButtonElement = eventCard.querySelector(".saveEventBtn")!;
+    
+    saveEventBtn.addEventListener('click',async function(){
+        
+        let newName:HTMLElement = eventCard.querySelector(".eventName.editableEventProp")!;
+        let newAuthor:HTMLElement = eventCard.querySelector(".eventAuthor.editableEventProp")!;
+        let newDescription:HTMLElement = eventCard.querySelector(".eventDesc.editableEventProp")!;
+        
+        if (EventPropValid(newName.innerText,newAuthor.innerText,newDescription.innerText)){
+            
+            await UpdateEvent(event.id,newName.innerText,newAuthor.innerText,newDescription.innerText);
+        }
+
+        editEventBtn.classList.remove("d-none");
+        saveEventBtn.classList.add("d-none");
+        await GetAllEvents();        
+        
+    })
+    
+}
+
 
 
 

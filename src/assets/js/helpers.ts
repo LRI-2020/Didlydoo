@@ -6,3 +6,8 @@
 export function formatDay(day:number):string{
     return day<10 ? `0${day}`:`${day}`;
 }
+
+export function IsNullOrEmpty(value:string){
+
+    return value===null || value.trim()==="" || false
+}
