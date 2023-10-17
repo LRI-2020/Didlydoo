@@ -55,36 +55,7 @@ export function SaveAttendeeListener(eventId: string) {
 
 
 function DisplayAddAttendeeForm(event:ExtendedEvent, addAttendeeForm:HTMLFormElement) {
-    addAttendeeForm.classList.remove("d-none");
-    let eventNameEl : HTMLSpanElement = addAttendeeForm.querySelector("span.addAttendeeForm__EventName")!;
-    eventNameEl.innerText = event.name;
-    
-    let dateTemp = `
-            <span class="addAttendeeDateText">01/01/2022</span>
-            <label for="<available_TimeStamp>">available : </label>
-            <input type="checkbox" class="available" id="<available_TimeStamp>">
-            <label for="<notAvailable_TimeStamp>">not available : </label>
-            <input type="checkbox" id="<notAvailable_TimeStamp>" class="notAvailable">`;
-    
-    for(let slot of event.dates){
-        
-        let addAttendeesDateEL = document.createElement("div");
-        addAttendeesDateEL.classList.add("form-group","addAttendeesDate","d-flex","flex-row","justify-content-around","align-items-center","text-center")
-        addAttendeesDateEL.setAttribute("id",`${slot.date.getTime()}`);
-        addAttendeesDateEL.innerHTML=dateTemp;
-        
-        let dateTextEl :HTMLSpanElement = addAttendeesDateEL.querySelector(".addAttendeeDateText")!;
-        dateTextEl.innerText = `${slot.date.getFullYear()}-${formatMonth(slot.date.getMonth())}-${formatDay(slot.date.getDate())}`;
-        
-        let availableInput : HTMLInputElement = addAttendeesDateEL.querySelector("input.available")!;
-        availableInput.setAttribute("id",`available_${slot.date.getTime()}`);        
-        
-        let notAvailableInput : HTMLInputElement = addAttendeesDateEL.querySelector("input.notAvailable")!;
-        notAvailableInput.setAttribute("id",`notAvailable_${slot.date.getTime()}`);
-        addAttendeeForm.appendChild(addAttendeesDateEL);
-        
-    }
-
+  
 }
 
 export function AddAttendeesListener(event:ExtendedEvent) {
@@ -94,8 +65,7 @@ export function AddAttendeesListener(event:ExtendedEvent) {
 
     addAttendeeBtn.addEventListener("click", function (e) {
         e.preventDefault();
-        
-        DisplayAddAttendeeForm(event,addAttendeeForm)
+        DisplayAddAttendeeForm(event);
 
     });
 

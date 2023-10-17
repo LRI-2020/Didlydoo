@@ -29,11 +29,9 @@ export function GetAvailabilityForDate(date: Date, name: string, event: Extended
 
     let slot = event.dates !==undefined? event.dates.find(d => d.date===date) : undefined;
     let attendee = slot !==undefined && slot.attendees !==undefined? slot.attendees.find(a => a.name === name) : undefined;
-    let availability = attendee!== undefined? attendee.available : undefined;
-
-    return   availability!==undefined && availability!== null? availability.toString() : "null";
-
+    return attendee!== undefined? attendee.available : undefined;
 }
+
 
 
 export function GetAttendeesNames(event: ExtendedEvent): string[] {

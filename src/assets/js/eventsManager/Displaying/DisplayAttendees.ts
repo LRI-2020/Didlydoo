@@ -17,9 +17,8 @@ export function DisplayAttendees(event: ExtendedEvent, tableBodyEl: HTMLTableEle
         attendeeEl.appendChild(nameEl);
 
         for(let date of dates){
-            let availabilityEl:HTMLTableCellElement = document.createElement("td")!;
-            availabilityEl.classList.add("attendeeAvailability");
-            availabilityEl.innerText = GetAvailabilityForDate(date, name, event);
+            
+            let availabilityEl = DisplayAvailabilty(date,name,event);
 
             attendeeEl.appendChild(availabilityEl);
         }
@@ -28,4 +27,41 @@ export function DisplayAttendees(event: ExtendedEvent, tableBodyEl: HTMLTableEle
 
     }
 
+}
+
+function DisplayAvailabilty(date:Date, name:string, event:ExtendedEvent){
+    
+    let availabilityEl:HTMLTableCellElement = document.createElement("td")!;
+    availabilityEl.classList.add("attendeeAvailability");
+    
+    let select = document.createElement("select");    
+    select.setAttribute("id",`availability_${date.getTime()}`);
+    
+    let availableOpt = document.createElement("option");
+    availableOpt.setAttribute("value","available");
+    availableOpt.innerText="Available";
+    let notAvailableOpt = document.createElement("option");
+    notAvailableOpt.setAttribute("value","notAvailable")
+    notAvailableOpt.innerText="Not available";
+    let notAnsweredOpt = document.createElement("option");
+    notAnsweredOpt.setAttribute("value","Don't know yet");
+    notAnsweredOpt.innerText="Don't know yet";
+
+    select.append(availableOpt,notAvailableOpt,notAnsweredOpt);
+
+    let available = GetAvailabilityForDate(date,name, event);
+    
+    //ToDo enum here
+    switch(available){
+        case true: select.value="available";
+            break;
+        case false:select.value="notAvailable";
+            break;
+        case undefined:
+        case null:select.value="Don't know yet";
+            break;
+    }
+    
+    availabilityEl.appendChild(select);
+    return availabilityEl;
 }
