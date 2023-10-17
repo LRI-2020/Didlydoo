@@ -11,7 +11,73 @@
     "created_at": "2023-10-16T14:50:56.225Z",
     "num_modification": 0,
     "last_modification": "2023-10-16T14:50:56.225Z",
-    "attendees": []
+    "attendees": [
+      {
+        "name": "Jonas",
+        "dates": []
+      },
+      {
+        "name": "Layla",
+        "dates": [
+          {
+            "date": "2023-10-26",
+            "available": true
+          },
+          {
+            "date": "2023-10-27",
+            "available": false
+          }
+        ]
+      },
+      {
+        "name": "test",
+        "dates": [
+          {
+            "date": "2023-10-26",
+            "available": true
+          },
+          {
+            "date": "2023-10-27",
+            "available": true
+          }
+        ]
+      },
+      {
+        "name": "truc",
+        "dates": [
+          {
+            "date": "2023-10-26",
+            "available": false
+          }
+        ]
+      },
+      {
+        "name": "Emma",
+        "dates": [
+          {
+            "date": "2023-10-26",
+            "available": false
+          },
+          {
+            "date": "2023-10-27",
+            "available": true
+          }
+        ]
+      },
+      {
+        "name": "autre",
+        "dates": [
+          {
+            "date": "2023-10-26",
+            "available": true
+          },
+          {
+            "date": "2023-10-27",
+            "available": true
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "94a328c9fb97",

@@ -1,5 +1,5 @@
 ﻿import {ExtendedEvent} from "../../classes/didlydooEvents.ts";
-import {eventTemp} from "../../HtmlManager/eventTemp.ts";
+import {eventTemp} from "../../HtmlManager/templates.ts";
 import {DisplaySlots} from "./DisplaySlots.ts";
 import {DisplayAttendees} from "./DisplayAttendees.ts";
 import {AddAttendeesListener} from "../../UsersActionsListeners.ts";

@@ -1,10 +1,10 @@
 ﻿// @ts-ignore
 
-import {CreateEvent, formatDay, formatMonth} from "./eventsManager/EventCreation.ts";
-import {GetAllEvents} from "./eventsManager/GetEvents.ts";
+import {CreateEvent, formatDay, formatMonth} from "./eventsManager/Crud/EventCreation.ts";
+import {GetAllEvents} from "./eventsManager/Crud/GetEvents.ts";
 import {ExtendedEvent} from "./classes/didlydooEvents.ts";
-import {AvailibityHtmlStruc, NameHtmlStruc} from "./HtmlManager/createHtmlElement.ts";
-import {DisplayAddAttendeeForm} from "./eventsManager/addAttendee.ts";
+import {CreateAttendee, DisplayAddAttendeeForm} from "./eventsManager/Crud/addAttendee.ts";
+import {ExtendedSlot} from "./classes/slot.ts";
 
 let createEventBtn: HTMLButtonElement = document.querySelector(".addEvent")!;
 let createEventForm: HTMLFormElement = document.querySelector(".createEvent")!;
@@ -65,6 +65,17 @@ function EnableCancelButton(cancelEventBtn: HTMLButtonElement, element: HTMLElem
     });
 }
 
+
+
+function EnableSaveButton(eventId:string, eventSlots:ExtendedSlot[],saveEventBtn: HTMLButtonElement, newAttendeeEl: HTMLTableRowElement) {
+
+    saveEventBtn.disabled = false;
+    saveEventBtn.addEventListener('click', async function(){
+       await CreateAttendee(eventId,eventSlots,newAttendeeEl);
+    })
+    
+}
+
 export function AddAttendeesListener(event: ExtendedEvent) {
 
     let evenCard = document.getElementById(event.id)!;
@@ -80,7 +91,8 @@ export function AddAttendeesListener(event: ExtendedEvent) {
         EnableCancelButton(cancelEventBtn, newAttendeeEl);
 
         //TODO validation here
-        saveEventBtn.disabled = false;
+        EnableSaveButton(event.id,event.dates,saveEventBtn,newAttendeeEl);
+        
     });
 }
 

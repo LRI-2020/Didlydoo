@@ -1,6 +1,6 @@
-﻿import {ExtendedSlot, Slot} from "../classes/slot.ts";
-import {DidlydooEvent, ExtendedEvent, RawExtendedEvent} from "../classes/didlydooEvents.ts";
-import {attendee, ExtendedAttendee} from "../classes/attendee.ts";
+﻿import {ExtendedSlot, Slot} from "../../classes/slot.ts";
+import {DidlydooEvent, ExtendedEvent, RawExtendedEvent} from "../../classes/didlydooEvents.ts";
+import {attendee, ExtendedAttendee} from "../../classes/attendee.ts";
 
 export function convertToExtendedEvent(rawEvent: RawExtendedEvent): ExtendedEvent|undefined {
 

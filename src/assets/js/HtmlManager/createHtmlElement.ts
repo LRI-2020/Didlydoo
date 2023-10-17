@@ -8,7 +8,9 @@ export function NameHtmlStruc(name: string, readOnly:boolean) {
     let nameEl: HTMLTableCellElement = document.createElement("td")!;
     nameEl.classList.add("attendeeName");
     let nameInput = document.createElement("input");
+    nameInput.classList.add("attendeeNameInput");
     nameInput.setAttribute("type","text");
+    nameInput.required=true;
     nameInput.value = name;
     nameInput.readOnly = readOnly;    
     nameEl.appendChild(nameInput);    
@@ -25,13 +27,13 @@ export function AvailibityHtmlStruc(date: Date) {
     select.setAttribute("id",`availability_${date.getTime()}`);
 
     let availableOpt = document.createElement("option");
-    availableOpt.setAttribute("value","available");
+    availableOpt.setAttribute("value","true");
     availableOpt.innerText="Available";
     let notAvailableOpt = document.createElement("option");
-    notAvailableOpt.setAttribute("value","notAvailable")
+    notAvailableOpt.setAttribute("value","false")
     notAvailableOpt.innerText="Not available";
     let notAnsweredOpt = document.createElement("option");
-    notAnsweredOpt.setAttribute("value","Don't know yet");
+    notAnsweredOpt.setAttribute("value","null");
     notAnsweredOpt.innerText="Don't know yet";
 
     select.append(availableOpt,notAvailableOpt,notAnsweredOpt);

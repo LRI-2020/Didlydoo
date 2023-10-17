@@ -1,8 +1,8 @@
-﻿import {ExtendedEvent} from "../classes/didlydooEvents.ts";
+﻿import {ExtendedEvent} from "../../classes/didlydooEvents.ts";
 import {convertToExtendedEvent} from "./converters.ts";
-import {attendee} from "../classes/attendee.ts";
-import {DisplayEvents} from "./Displaying/DisplayEvents.ts";
-import {eventsHost} from "../appConfig.js.ts";
+import {attendee} from "../../classes/attendee.ts";
+import {DisplayEvents} from "../Displaying/DisplayEvents.ts";
+import {eventsHost} from "../../appConfig.js.ts";
 
 
 

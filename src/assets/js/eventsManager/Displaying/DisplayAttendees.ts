@@ -1,5 +1,5 @@
 ﻿import {ExtendedEvent} from "../../classes/didlydooEvents.ts";
-import {GetAttendeesNames, GetAvailabilityForDate} from "../GetEvents.ts";
+import {GetAttendeesNames, GetAvailabilityForDate} from "../Crud/GetEvents.ts";
 import {AvailibityHtmlStruc, NameHtmlStruc} from "../../HtmlManager/createHtmlElement.ts";
 
 
@@ -32,12 +32,12 @@ function SetAvailability(availabilityEl: HTMLTableCellElement, available: undefi
     let select = availabilityEl.querySelector("select")!;
     //ToDo enum here
     switch(available){
-        case true: select.value="available";
+        case true: select.value="true";
             break;
-        case false:select.value="notAvailable";
+        case false:select.value="false";
             break;
         case undefined:
-        case null:select.value="Don't know yet";
+        case null:select.value="null";
             break;
     }
     
