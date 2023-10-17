@@ -1,5 +1,85 @@
 [
   {
+    "id": "5dcf1b735c97",
+    "name": "nouveau test",
+    "author": "trucBiduleChoseMachin",
+    "description": "j'en sais rien du tout",
+    "dates": [
+      "2023-10-21",
+      "2023-10-25",
+      "2023-11-04"
+    ],
+    "created_at": "2023-10-17T10:10:04.290Z",
+    "num_modification": 0,
+    "last_modification": "2023-10-17T10:10:04.290Z",
+    "attendees": [
+      {
+        "name": "essai",
+        "dates": [
+          {
+            "date": "2023-10-21",
+            "available": true
+          },
+          {
+            "date": "2023-10-25",
+            "available": true
+          },
+          {
+            "date": "2023-11-04",
+            "available": true
+          }
+        ]
+      },
+      {
+        "name": "bidule",
+        "dates": [
+          {
+            "date": "2023-10-21",
+            "available": true
+          },
+          {
+            "date": "2023-10-25",
+            "available": false
+          }
+        ]
+      },
+      {
+        "name": "chose",
+        "dates": [
+          {
+            "date": "2023-10-21",
+            "available": true
+          },
+          {
+            "date": "2023-10-25",
+            "available": true
+          },
+          {
+            "date": "2023-11-04",
+            "available": true
+          }
+        ]
+      },
+      {
+        "name": "truc",
+        "dates": [
+          {
+            "date": "2023-10-21",
+            "available": true
+          },
+          {
+            "date": "2023-10-25",
+            "available": true
+          },
+          {
+            "date": "2023-11-04",
+            "available": true
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "b4df8fcaee05",
     "name": "anniversaire de Truc",
     "author": "truc",

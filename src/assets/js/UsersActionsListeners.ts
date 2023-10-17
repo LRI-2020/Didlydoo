@@ -8,72 +8,15 @@ import {ExtendedSlot} from "./classes/slot.ts";
 
 let createEventBtn: HTMLButtonElement = document.querySelector(".addEvent")!;
 let createEventForm: HTMLFormElement = document.querySelector(".createEvent")!;
-
-let dateList: HTMLFieldSetElement = document.querySelector(".datesList")!;
-let addDate: HTMLButtonElement = document.querySelector((".addDate"))!;
+//
+// let dateList: HTMLFieldSetElement = document.querySelector(".datesList")!;
+// let addDate: HTMLButtonElement = document.querySelector((".addDate"))!;
 
 
 export function SetAllListeners() {
 
     AddAnEventListener(createEventBtn, createEventForm);
-    AddDateInputListener(addDate, dateList);
     CreateEventListener(createEventForm);
-}
-
-function AddAnEventListener(addEventBtn: HTMLButtonElement, form: HTMLFormElement) {
-    addEventBtn.addEventListener('click', function () {
-
-        form.classList.remove("d-none");
-
-    });
-}
-
-function AddDateInputListener(addDateButton: HTMLButtonElement, dateList: HTMLFieldSetElement) {
-
-    addDateButton.addEventListener("click", function (e) {
-        e.preventDefault();
-        let input = document.createElement("input");
-        input.setAttribute("type", "date");
-        input.setAttribute("name", "createEventDate");
-        dateList.appendChild(input);
-    });
-}
-
-export function SaveAttendeeListener(eventId: string) {
-    let eventCard: HTMLDivElement = document.getElementById(eventId)!;
-    let saveAttendeeBtn: HTMLButtonElement = eventCard
-        .querySelector(".card-footer")!
-        .querySelector(`.attendeesList`)!
-        .querySelector(`.saveAttendeesBtn`)!;
-
-    saveAttendeeBtn.addEventListener('click', function () {
-        let attendeesNameInput: NodeListOf<HTMLInputElement> = eventCard.querySelector("fieldset.eventAttendee")!
-            .querySelector(".eventAttendeeInput")!;
-        let attendeesNames: string[] = [];
-        attendeesNameInput.forEach(input => attendeesNames.push(input.value));
-
-    })
-}
-
-
-function EnableCancelButton(cancelEventBtn: HTMLButtonElement, element: HTMLElement) {
-    cancelEventBtn.disabled = false;
-
-    cancelEventBtn.addEventListener('click', function () {
-        if (element.parentNode !== null)
-            element.parentNode.removeChild(element);
-    });
-}
-
-
-
-function EnableSaveButton(eventId:string, eventSlots:ExtendedSlot[],saveEventBtn: HTMLButtonElement, newAttendeeEl: HTMLTableRowElement) {
-
-    saveEventBtn.disabled = false;
-    saveEventBtn.addEventListener('click', async function(){
-       await CreateAttendee(eventId,eventSlots,newAttendeeEl);
-    })
-    
 }
 
 export function AddAttendeesListener(event: ExtendedEvent) {
@@ -91,11 +34,36 @@ export function AddAttendeesListener(event: ExtendedEvent) {
         EnableCancelButton(cancelEventBtn, newAttendeeEl);
 
         //TODO validation here
-        EnableSaveButton(event.id,event.dates,saveEventBtn,newAttendeeEl);
-        
+        EnableSaveAttendeesButton(event.id,event.dates,saveEventBtn,newAttendeeEl);
+
     });
 }
 
+function AddAnEventListener(addEventBtn: HTMLButtonElement, form: HTMLFormElement) {
+    addEventBtn.addEventListener('click', function () {
+
+        form.classList.remove("d-none");
+
+    });
+}
+
+
+function EnableCancelButton(cancelEventBtn: HTMLButtonElement, element: HTMLElement) {
+    cancelEventBtn.disabled = false;
+
+    cancelEventBtn.addEventListener('click', function () {
+        if (element.parentNode !== null)
+            element.parentNode.removeChild(element);
+    });
+}
+function EnableSaveAttendeesButton(eventId:string, eventSlots:ExtendedSlot[],saveEventBtn: HTMLButtonElement, newAttendeeEl: HTMLTableRowElement) {
+
+    saveEventBtn.disabled = false;
+    saveEventBtn.addEventListener('click', async function(){
+       await CreateAttendee(eventId,eventSlots,newAttendeeEl);
+    })
+    
+}
 function CreateEventListener(createForm: HTMLFormElement) {
     createForm.addEventListener("submit", async function () {
 
@@ -124,6 +92,16 @@ function CreateEventListener(createForm: HTMLFormElement) {
 
 }
 
+// function AddDateInputListener(addDateButton: HTMLButtonElement, dateList: HTMLFieldSetElement) {
+//
+//     addDateButton.addEventListener("click", function (e) {
+//         e.preventDefault();
+//         let input = document.createElement("input");
+//         input.setAttribute("type", "date");
+//         input.setAttribute("name", "createEventDate");
+//         dateList.appendChild(input);
+//     });
+// }
 
 
 
