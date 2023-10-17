@@ -59,6 +59,28 @@
             "available": true
           }
         ]
+      },
+      {
+        "name": "zut",
+        "dates": [
+          {
+            "date": "2023-10-12",
+            "available": true
+          },
+          {
+            "date": "2023-10-18",
+            "available": false
+          }
+        ]
+      },
+      {
+        "name": "bof",
+        "dates": [
+          {
+            "date": "2023-10-18",
+            "available": true
+          }
+        ]
       }
     ]
   },

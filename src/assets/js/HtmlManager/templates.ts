@@ -25,9 +25,9 @@ export let eventTemp = `
             </div>
             <div class="card-footer">
             <button class="btn btn-secondary addAttendeesBtn">Add Attendees</button>
-            <button class="btn btn-secondary addDatesBtn">Add Dates</button>
-            <button class="btn btn-secondary saveAttendees" disabled>Save Attendees</button>
-            <button class="btn btn-secondary cancelEventModif" disabled>Cancel</button>
+            <button class="btn btn-secondary addDatesBtn d-none">Add Dates</button>
+            <button class="btn btn-secondary saveAttendees d-none">Save Attendees</button>
+            <button class="btn btn-secondary cancelEventModif d-none">Cancel</button>
             </div>`
 
 

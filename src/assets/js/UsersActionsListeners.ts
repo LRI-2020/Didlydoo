@@ -32,8 +32,8 @@ export function AddAttendeesListener(event: ExtendedEvent) {
     addAttendeeBtn.addEventListener("click", function (e) {
         e.preventDefault();
         DisplayAddAttendeeForm(event);
-        cancelEventBtn.disabled=false;
-        saveAttendeesBtn.disabled = false;
+        cancelEventBtn.classList.remove("d-none");
+        saveAttendeesBtn.classList.remove("d-none");
     });
 }
 function AddAnEventListener(addEventBtn: HTMLButtonElement, form: HTMLFormElement) {
@@ -58,8 +58,8 @@ export function CancelButtonListener(event:ExtendedEvent) {
             })
         }
 
-        saveAttendeeBtn.disabled=true;
-        cancelBtn.disabled=true;
+        saveAttendeeBtn.classList.add("d-none");
+        cancelBtn.classList.add("d-none");
     });
 }
 export function SaveAttendeesListener(event:ExtendedEvent) {
@@ -79,9 +79,8 @@ export function SaveAttendeesListener(event:ExtendedEvent) {
             }
         }
 
-        saveAttendeeBtn.disabled=true;
-        cancelBtn.disabled=true;
-        
+        saveAttendeeBtn.classList.add("d-none");
+        cancelBtn.classList.add("d-none");      
        
     })
     
@@ -170,8 +169,6 @@ export function SaveEventListener(event:ExtendedEvent){
     })
     
 }
-
-
 export function DeleteEventListener(event:ExtendedEvent){
     let eventCard = document.getElementById(event.id)!;
     let deleteBtn = eventCard.querySelector("button.deleteEventBtn")!;
