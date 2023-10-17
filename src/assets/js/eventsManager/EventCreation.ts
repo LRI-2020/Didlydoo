@@ -1,12 +1,12 @@
 ﻿import {eventsHost} from "../appConfig.js.ts";
 
 
-function formatMonth(month: number):string {
+export function formatMonth(month: number):string {
 
     return month<9 ? `0${month + 1}` : `${month + 1}`;
 }
 
-function formatDay(day:number):string{
+export function formatDay(day:number):string{
     return day<10 ? `0${day}`:`${day}`;
 }
 

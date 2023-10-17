@@ -27,17 +27,14 @@
     </form>
 
 
-    <form class="addAttendeeForm">
-        <label for="attendeeNameInput"> Name : </label>
-        <input type="text" id="attendeeNameInput" class="attendeeNameInput" required>
-        <div id="timeStamp" class="addAttendeesDates d-flex flex-row justify-content-around align-items-center text-center">
-            <span class="addAttendeeDateText">01/01/2022</span>
-            <label for="available_TimeStamp">available : </label>
-            <input type="checkbox" id="available_TimeStamp">
-            <label for="notAvailable_TimeStamp">not available : </label>
-            <input type="checkbox" id="notAvailable_TimeStamp">
-        </div>
+    <form class="addAttendeeForm d-none" eventId="<eventId>">
         <button class="btn btn-secondary saveAttendeesBtn">Save Attendee</button>
+        <div class="form-group">
+            <span class="addAttendeeForm__EventName d-block"></span>
+            <label for="attendeeNameInput"> Name : </label>
+            <input type="text" id="attendeeNameInput" class="attendeeNameInput" required>
+        </div>
+        
     </form>
 
     <div class="eventsContainer">

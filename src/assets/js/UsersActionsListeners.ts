@@ -1,7 +1,8 @@
 ﻿// @ts-ignore
 
-import {CreateEvent} from "./eventsManager/EventCreation.ts";
+import {CreateEvent, formatDay, formatMonth} from "./eventsManager/EventCreation.ts";
 import {GetAllEvents} from "./eventsManager/GetEvents.ts";
+import {ExtendedEvent} from "./classes/didlydooEvents.ts";
 
 let createEventBtn: HTMLButtonElement = document.querySelector(".addEvent")!;
 let createEventForm: HTMLFormElement = document.querySelector(".createEvent")!;
@@ -53,18 +54,49 @@ export function SaveAttendeeListener(eventId: string) {
 }
 
 
-export function AddAttendeesListener(eventId: string) {
-    let cardFooter: HTMLDivElement = document.getElementById(eventId)!.querySelector(".card-footer")!;
-    let attendeesList: HTMLFieldSetElement = cardFooter.querySelector(`.attendeesList`)!;
-    let addAttendeeBtn: HTMLButtonElement = cardFooter.querySelector(".addAttendeesBtn")!;
+function DisplayAddAttendeeForm(event:ExtendedEvent, addAttendeeForm:HTMLFormElement) {
+    addAttendeeForm.classList.remove("d-none");
+    let eventNameEl : HTMLSpanElement = addAttendeeForm.querySelector("span.addAttendeeForm__EventName")!;
+    eventNameEl.innerText = event.name;
+    
+    let dateTemp = `
+            <span class="addAttendeeDateText">01/01/2022</span>
+            <label for="<available_TimeStamp>">available : </label>
+            <input type="checkbox" class="available" id="<available_TimeStamp>">
+            <label for="<notAvailable_TimeStamp>">not available : </label>
+            <input type="checkbox" id="<notAvailable_TimeStamp>" class="notAvailable">`;
+    
+    for(let slot of event.dates){
+        
+        let addAttendeesDateEL = document.createElement("div");
+        addAttendeesDateEL.classList.add("form-group","addAttendeesDate","d-flex","flex-row","justify-content-around","align-items-center","text-center")
+        addAttendeesDateEL.setAttribute("id",`${slot.date.getTime()}`);
+        addAttendeesDateEL.innerHTML=dateTemp;
+        
+        let dateTextEl :HTMLSpanElement = addAttendeesDateEL.querySelector(".addAttendeeDateText")!;
+        dateTextEl.innerText = `${slot.date.getFullYear()}-${formatMonth(slot.date.getMonth())}-${formatDay(slot.date.getDate())}`;
+        
+        let availableInput : HTMLInputElement = addAttendeesDateEL.querySelector("input.available")!;
+        availableInput.setAttribute("id",`available_${slot.date.getTime()}`);        
+        
+        let notAvailableInput : HTMLInputElement = addAttendeesDateEL.querySelector("input.notAvailable")!;
+        notAvailableInput.setAttribute("id",`notAvailable_${slot.date.getTime()}`);
+        addAttendeeForm.appendChild(addAttendeesDateEL);
+        
+    }
+
+}
+
+export function AddAttendeesListener(event:ExtendedEvent) {
+    let addAttendeeBtn: HTMLButtonElement = document.getElementById(event.id)!.querySelector(".card-footer")!
+        .querySelector(".addAttendeesBtn")!;
+    let addAttendeeForm: HTMLFormElement = document.querySelector(".addAttendeeForm")!;
 
     addAttendeeBtn.addEventListener("click", function (e) {
         e.preventDefault();
-        attendeesList.classList.remove("d-none");
-        let input = document.createElement("input");
-        input.setAttribute("type", "text");
-        input.classList.add("eventAttendeeInput");
-        attendeesList.appendChild(input);
+        
+        DisplayAddAttendeeForm(event,addAttendeeForm)
+
     });
 
 

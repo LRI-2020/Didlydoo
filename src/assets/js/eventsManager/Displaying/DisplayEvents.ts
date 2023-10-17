@@ -10,7 +10,7 @@ export function DisplayEvents(events: ExtendedEvent[]) {
 
         createEventCard(event);
         //add Listener for attendee and dates
-        AddAttendeesListener(event.id);
+        AddAttendeesListener(event);
     }
 
 }
