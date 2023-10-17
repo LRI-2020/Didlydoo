@@ -7,8 +7,9 @@ export let eventTemp = `
             <p class="eventDesc editableEventProp" contenteditable="false"></p>
             </div>
             <div class="d-flex flex-column">
-            <button class="btn btn-secondary editEventBtn align-self-center">Edit</button>
-            <button class="btn btn-secondary saveEventBtn align-self-center d-none">Save</button>
+            <button class="btn btn-secondary my-1 editEventBtn align-self-center">Edit</button>
+            <button class="btn btn-secondary my-1 saveEventBtn align-self-center d-none">Save</button>
+            <button class="btn btn-secondary my-1 deleteEventBtn align-self-center">Delete</button>
             </div>
             </div>
             <div class="card-body">

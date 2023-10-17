@@ -5,6 +5,7 @@ import {GetAllEvents} from "./eventsManager/Crud/GetEvents.ts";
 import {ExtendedEvent} from "./classes/didlydooEvents.ts";
 import {CreateAttendee, DisplayAddAttendeeForm} from "./eventsManager/Crud/addAttendee.ts";
 import {EventPropValid, UpdateEvent} from "./eventsManager/Crud/UpdateEvent.ts";
+import {DeleteEvent} from "./eventsManager/Crud/deleteEvent.ts";
 
 let createEventBtn: HTMLButtonElement = document.querySelector(".addEvent")!;
 let createEventForm: HTMLFormElement = document.querySelector(".createEvent")!;
@@ -168,6 +169,17 @@ export function SaveEventListener(event:ExtendedEvent){
         
     })
     
+}
+
+
+export function DeleteEventListener(event:ExtendedEvent){
+    let eventCard = document.getElementById(event.id)!;
+    let deleteBtn = eventCard.querySelector("button.deleteEventBtn")!;
+    
+    deleteBtn.addEventListener('click',async function(){
+        await DeleteEvent(event.id);
+        await GetAllEvents();
+    })
 }
 
 

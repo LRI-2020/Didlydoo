@@ -2,7 +2,7 @@
 import {eventTemp} from "../../HtmlManager/templates.ts";
 import {DisplaySlots} from "./DisplaySlots.ts";
 import {DisplayAttendees} from "./DisplayAttendees.ts";
-import {AddAttendeesListener, CancelButtonListener, EditAnEventListener, SaveAttendeesListener, SaveEventListener} from "../../UsersActionsListeners.ts";
+import {AddAttendeesListener, CancelButtonListener, DeleteEventListener, EditAnEventListener, SaveAttendeesListener, SaveEventListener} from "../../UsersActionsListeners.ts";
 
 export function DisplayEvents(events: ExtendedEvent[]) {
 
@@ -18,6 +18,7 @@ export function DisplayEvents(events: ExtendedEvent[]) {
         CancelButtonListener(event);
         EditAnEventListener(event);
         SaveEventListener(event);
+        DeleteEventListener(event);
     }
 
 }
@@ -25,7 +26,7 @@ export function createEventCard(event: ExtendedEvent) {
     let container: HTMLDivElement = document.querySelector(".eventsContainer")!;
     let card = document.createElement('div');
     card.setAttribute("id",event.id);
-    card.classList.add("card", "didlydooEvent");
+    card.classList.add("card", "didlydooEvent", "my-2");
     card.innerHTML = eventTemp;
     FulfillCard(event, card);
     container.appendChild(card);
