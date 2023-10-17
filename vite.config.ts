@@ -7,5 +7,8 @@ export default {
         alias: {
             '~bootstrap': path.resolve(__dirname, 'node_modules/bootstrap'),
         }
+    },
+    build: {
+        target: 'esnext'
     }
 }

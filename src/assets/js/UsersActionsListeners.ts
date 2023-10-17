@@ -61,6 +61,7 @@ export function CancelButtonListener(event:ExtendedEvent) {
     });
 }
 export function SaveAttendeesListener(event:ExtendedEvent) {
+    // @ts-ignore
     let evenCard:HTMLDivElement = document.getElementById(event.id)!;
     let saveAttendeeBtn: HTMLButtonElement = evenCard.querySelector(".saveAttendees")!;
     let cancelBtn: HTMLButtonElement = evenCard.querySelector(".cancelEventModif")!;
@@ -93,6 +94,7 @@ function CreateEventListener(createForm: HTMLFormElement) {
         let author: string = authorEl.value;
         let descriptionEL: HTMLInputElement = document.querySelector("#eventDescription")!;
         let description: string = descriptionEL.value;
+        // @ts-ignore
         let dateFields: NodeListOf<HTMLInputElement> = document.getElementsByName("createEventDate")!;
         let dates: Date[] = [];
 
