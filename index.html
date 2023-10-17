@@ -2,18 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
-    <link rel="icon" type="image/svg+xml" href="/TechTest/vite.svg"/>
+    <link rel="icon" type="image/svg+xml" href="/Didlydoo/vite.svg"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     
     
     <title>Vite + TS</title>
-  <script type="module" crossorigin src="/TechTest/assets/index-e3bf8281.js"></script>
-  <link rel="stylesheet" href="/TechTest/assets/index-abaf67d4.css">
+  <script type="module" crossorigin src="/Didlydoo/assets/index-6915482b.js"></script>
+  <link rel="stylesheet" href="/Didlydoo/assets/index-0d659f96.css">
 </head>
 <body>
 <div class="container py-4 px-3 mx-auto">
-    <h1>Hello, Bootstrap and Vite!</h1>
-    <button class="btn btn-secondary"> Init project</button>
+    <button class="btn btn-secondary addEvent">Add an Event</button>
+    
+    <form class="createEvent d-none">
+        <label for="eventName">Name : </label>
+        <input class="text" id="eventName" name="eventName" required>
+        <label for="eventAuthor">Author : </label>
+        <input class="text" id="eventAuthor" name="eventAuthor" required>
+        <label for="eventDescription">Description : </label>
+        <input class="text" id="eventDescription" name="eventDescription">
+        <fieldset class="datesList">
+            <input type="date" name="createEventDate" required>
+            <button class="addDate">Add a Date</button>
+        </fieldset>
+        <button type="submit" class="btn btn-secondary saveNewEventBtn">Create Event</button>
+    </form>
+
+    <div class="eventsContainer">
+    </div>
+    
+    
+    
 </div>
 </body>
 </html>
