@@ -7,23 +7,23 @@
     
     
     <title>Vite + TS</title>
-  <script type="module" crossorigin src="/Didlydoo/assets/index-2cf29387.js"></script>
-  <link rel="stylesheet" href="/Didlydoo/assets/index-0d659f96.css">
+  <script type="module" crossorigin src="/Didlydoo/assets/index-02c5572e.js"></script>
+  <link rel="stylesheet" href="/Didlydoo/assets/index-612e30eb.css">
 </head>
 <body>
 <div class="container py-4 px-3 mx-auto">
     <button class="btn btn-secondary addEvent">Add an Event</button>
     
-    <form class="createEvent d-none">
+    <form class="createEvent d-none d-flex flex-column mx-auto p-2 align-items-start">
         <label for="eventName">Name : </label>
-        <input class="text" id="eventName" name="eventName" required>
+        <input type="text" id="eventName" name="eventName" required>
         <label for="eventAuthor">Author : </label>
-        <input class="text" id="eventAuthor" name="eventAuthor" required>
+        <input type="text" id="eventAuthor" name="eventAuthor" required>
         <label for="eventDescription">Description : </label>
-        <input class="text" id="eventDescription" name="eventDescription">
-        <fieldset class="datesList">
-            <input type="date" name="createEventDate" required>
-            <button class="addDate">Add a Date</button>
+        <input type="text" id="eventDescription" name="eventDescription">
+        <fieldset class="datesList d-flex flex-column align-items-start">
+            <button class="btn btn-secondary addDate my-1 align-self-baseline"> + </button>
+            <input type="date" name="createEventDate" class="my-1" required>
         </fieldset>
         <button type="submit" class="btn btn-secondary saveNewEventBtn">Create Event</button>
     </form>
