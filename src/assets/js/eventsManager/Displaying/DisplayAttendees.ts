@@ -18,7 +18,7 @@ export function DisplayAttendees(event: ExtendedEvent, tableBodyEl: HTMLTableEle
 
         for(let date of dates){
             
-            let availabilityEl = DisplayAvailabilty(date,name,event);
+            let availabilityEl = DisplayAvailability(date,name,event);
 
             attendeeEl.appendChild(availabilityEl);
         }
@@ -29,14 +29,13 @@ export function DisplayAttendees(event: ExtendedEvent, tableBodyEl: HTMLTableEle
 
 }
 
-function DisplayAvailabilty(date:Date, name:string, event:ExtendedEvent){
-    
+function AvailibityHtmlStruc(date: Date) {
     let availabilityEl:HTMLTableCellElement = document.createElement("td")!;
     availabilityEl.classList.add("attendeeAvailability");
-    
-    let select = document.createElement("select");    
+
+    let select = document.createElement("select");
     select.setAttribute("id",`availability_${date.getTime()}`);
-    
+
     let availableOpt = document.createElement("option");
     availableOpt.setAttribute("value","available");
     availableOpt.innerText="Available";
@@ -48,9 +47,14 @@ function DisplayAvailabilty(date:Date, name:string, event:ExtendedEvent){
     notAnsweredOpt.innerText="Don't know yet";
 
     select.append(availableOpt,notAvailableOpt,notAnsweredOpt);
+    availabilityEl.appendChild(select);
 
-    let available = GetAvailabilityForDate(date,name, event);
-    
+    return availabilityEl;
+}
+
+function SetAvailability(availabilityEl: HTMLTableCellElement, available: undefined | boolean) {
+
+    let select = availabilityEl.querySelector("select")!;
     //ToDo enum here
     switch(available){
         case true: select.value="available";
@@ -62,6 +66,16 @@ function DisplayAvailabilty(date:Date, name:string, event:ExtendedEvent){
             break;
     }
     
-    availabilityEl.appendChild(select);
+    return availabilityEl;
+    
+}
+
+function DisplayAvailability(date:Date, name:string, event:ExtendedEvent){
+    
+    let availabilityEl = AvailibityHtmlStruc(date);
+    let available = GetAvailabilityForDate(date,name, event);
+    SetAvailability(availabilityEl, available);   
+
+    
     return availabilityEl;
 }
