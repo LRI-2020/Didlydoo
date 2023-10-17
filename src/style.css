@@ -11855,6 +11855,15 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+.createEvent {
+  width: 50%;
+  border-radius: 15px;
+  background-color: white;
+}
+.createEvent label {
+  color: black;
+}
+
 body {
   background-color: black;
 }

@@ -119,6 +119,7 @@ function AddDateInputListener(addDateButton: HTMLButtonElement, dateList: HTMLFi
     addDateButton.addEventListener("click", function (e) {
         e.preventDefault();
         let input = document.createElement("input");
+        input.classList.add("my-1");
         input.setAttribute("type", "date");
         input.setAttribute("name", "createEventDate");
         dateList.appendChild(input);
