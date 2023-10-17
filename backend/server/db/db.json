@@ -1,17 +1,53 @@
 [
   {
     "id": "d881db98a067",
-    "name": "repatch",
-    "author": "truc",
-    "description": "repatch",
+    "name": "Aucune idée",
+    "author": "Layla",
+    "description": "Bla bla bla blabla bla blabla bla",
     "dates": [
       "2023-10-12",
       "2023-10-18"
     ],
     "created_at": "2023-10-17T14:26:15.241Z",
-    "num_modification": 3,
-    "last_modification": "2023-10-17T14:49:18.527Z",
-    "attendees": []
+    "num_modification": 5,
+    "last_modification": "2023-10-17T15:07:49.788Z",
+    "attendees": [
+      {
+        "name": "bidule",
+        "dates": [
+          {
+            "date": "2023-10-12",
+            "available": true
+          },
+          {
+            "date": "2023-10-18",
+            "available": true
+          }
+        ]
+      },
+      {
+        "name": "chose",
+        "dates": [
+          {
+            "date": "2023-10-12",
+            "available": false
+          },
+          {
+            "date": "2023-10-18",
+            "available": true
+          }
+        ]
+      },
+      {
+        "name": "machin",
+        "dates": [
+          {
+            "date": "2023-10-12",
+            "available": true
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "f5b6564b5dc4",
