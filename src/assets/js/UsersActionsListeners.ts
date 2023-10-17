@@ -44,17 +44,29 @@ function AddAnEventListener(addEventBtn: HTMLButtonElement, form: HTMLFormElemen
 }
 
 
-function EnableCancelButton(cancelEventBtn: HTMLButtonElement, element: HTMLElement) {
-    cancelEventBtn.disabled = false;
+export function CancelButtonListener(event:ExtendedEvent) {
+    let evenCard = document.getElementById(event.id)!;
+    let cancelBtn:HTMLButtonElement = evenCard.querySelector("button.cancelEventModif")!;
+    let saveAttendeeBtn: HTMLButtonElement = evenCard.querySelector(".saveAttendees")!;
 
-    cancelEventBtn.addEventListener('click', function () {
-        if (element.parentNode !== null)
-            element.parentNode.removeChild(element);
+    cancelBtn.addEventListener('click', function () {
+        let elementsToCancel = evenCard.querySelectorAll("[editing='true']");
+        
+        if(elementsToCancel!==null && elementsToCancel!==undefined && elementsToCancel.length>0){
+            elementsToCancel.forEach(element => {
+                if (element.parentNode !== null)
+                    element.parentNode.removeChild(element);
+            })
+        }
+
+        saveAttendeeBtn.disabled=true;
+        cancelBtn.disabled=true;
     });
 }
 export function SaveAttendeesListener(event:ExtendedEvent) {
     let evenCard:HTMLDivElement = document.getElementById(event.id)!;
     let saveAttendeeBtn: HTMLButtonElement = evenCard.querySelector(".saveAttendees")!;
+    let cancelBtn: HTMLButtonElement = evenCard.querySelector(".cancelEventModif")!;
     
     saveAttendeeBtn.addEventListener('click', async function(){
         let newAttendeesElements: NodeListOf<HTMLTableRowElement> = evenCard.querySelectorAll(".attendeeInfo[editing='true']");
@@ -63,8 +75,13 @@ export function SaveAttendeesListener(event:ExtendedEvent) {
             
             for (const attendee of newAttendeesElements) {
                 await CreateAttendee(event.id,event.dates,attendee);
+                attendee.setAttribute("editing","false");
             }
         }
+
+        saveAttendeeBtn.disabled=true;
+        cancelBtn.disabled=true;
+        
        
     })
     
