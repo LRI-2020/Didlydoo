@@ -4,6 +4,7 @@ import {CreateEvent, formatDay, formatMonth} from "./eventsManager/EventCreation
 import {GetAllEvents} from "./eventsManager/GetEvents.ts";
 import {ExtendedEvent} from "./classes/didlydooEvents.ts";
 import {AvailibityHtmlStruc, NameHtmlStruc} from "./HtmlManager/createHtmlElement.ts";
+import {DisplayAddAttendeeForm} from "./eventsManager/addAttendee.ts";
 
 let createEventBtn: HTMLButtonElement = document.querySelector(".addEvent")!;
 let createEventForm: HTMLFormElement = document.querySelector(".createEvent")!;
@@ -48,40 +49,39 @@ export function SaveAttendeeListener(eventId: string) {
     saveAttendeeBtn.addEventListener('click', function () {
         let attendeesNameInput: NodeListOf<HTMLInputElement> = eventCard.querySelector("fieldset.eventAttendee")!
             .querySelector(".eventAttendeeInput")!;
-        let attendeesNames:string[]=[];
+        let attendeesNames: string[] = [];
         attendeesNameInput.forEach(input => attendeesNames.push(input.value));
-        
+
     })
 }
 
 
-function DisplayAddAttendeeForm(event:ExtendedEvent) {
-  
-    let tableBodyEl = document.getElementById(event.id)!.querySelector(".tableBody")!;
-    let nameEl = NameHtmlStruc("",false);
+function EnableCancelButton(cancelEventBtn: HTMLButtonElement, element: HTMLElement) {
+    cancelEventBtn.disabled = false;
 
-    for(let date of event.dates){
-
-        let availabilityEl = AvailibityHtmlStruc(date.date);
-        nameEl.appendChild(availabilityEl);
-    }
-    
-    tableBodyEl.appendChild(nameEl);
-    
+    cancelEventBtn.addEventListener('click', function () {
+        if (element.parentNode !== null)
+            element.parentNode.removeChild(element);
+    });
 }
 
-export function AddAttendeesListener(event:ExtendedEvent) {
-    let addAttendeeBtn: HTMLButtonElement = document.getElementById(event.id)!.querySelector(".card-footer")!
+export function AddAttendeesListener(event: ExtendedEvent) {
+
+    let evenCard = document.getElementById(event.id)!;
+    let addAttendeeBtn: HTMLButtonElement = evenCard.querySelector(".card-footer")!
         .querySelector(".addAttendeesBtn")!;
-    let addAttendeeForm: HTMLFormElement = document.querySelector(".addAttendeeForm")!;
+    let saveEventBtn: HTMLButtonElement = evenCard.querySelector("button.saveEvent")!;
+    let cancelEventBtn: HTMLButtonElement = evenCard.querySelector("button.cancelEventModif")!;
 
     addAttendeeBtn.addEventListener("click", function (e) {
         e.preventDefault();
-        DisplayAddAttendeeForm(event);
 
+        let newAttendeeEl = DisplayAddAttendeeForm(event);
+        EnableCancelButton(cancelEventBtn, newAttendeeEl);
+
+        //TODO validation here
+        saveEventBtn.disabled = false;
     });
-
-
 }
 
 function CreateEventListener(createForm: HTMLFormElement) {
@@ -102,7 +102,7 @@ function CreateEventListener(createForm: HTMLFormElement) {
         }
 
         //create the event
-        let createdEvent: Number = await CreateEvent(name, author, description, dates);
+        await CreateEvent(name, author, description, dates);
         createEventForm.classList.add("d-none");
 
         //reload all events with the new one
