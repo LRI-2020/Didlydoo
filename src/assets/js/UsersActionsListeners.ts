@@ -3,6 +3,7 @@
 import {CreateEvent, formatDay, formatMonth} from "./eventsManager/EventCreation.ts";
 import {GetAllEvents} from "./eventsManager/GetEvents.ts";
 import {ExtendedEvent} from "./classes/didlydooEvents.ts";
+import {AvailibityHtmlStruc, NameHtmlStruc} from "./HtmlManager/createHtmlElement.ts";
 
 let createEventBtn: HTMLButtonElement = document.querySelector(".addEvent")!;
 let createEventForm: HTMLFormElement = document.querySelector(".createEvent")!;
@@ -54,8 +55,19 @@ export function SaveAttendeeListener(eventId: string) {
 }
 
 
-function DisplayAddAttendeeForm(event:ExtendedEvent, addAttendeeForm:HTMLFormElement) {
+function DisplayAddAttendeeForm(event:ExtendedEvent) {
   
+    let tableBodyEl = document.getElementById(event.id)!.querySelector(".tableBody")!;
+    let nameEl = NameHtmlStruc("",false);
+
+    for(let date of event.dates){
+
+        let availabilityEl = AvailibityHtmlStruc(date.date);
+        nameEl.appendChild(availabilityEl);
+    }
+    
+    tableBodyEl.appendChild(nameEl);
+    
 }
 
 export function AddAttendeesListener(event:ExtendedEvent) {
