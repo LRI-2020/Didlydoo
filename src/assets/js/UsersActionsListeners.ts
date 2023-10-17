@@ -113,6 +113,7 @@ function CreateEventListener(createForm: HTMLFormElement) {
     });
 
 }
+
 function AddDateInputListener(addDateButton: HTMLButtonElement, dateList: HTMLFieldSetElement) {
 
     addDateButton.addEventListener("click", function (e) {
