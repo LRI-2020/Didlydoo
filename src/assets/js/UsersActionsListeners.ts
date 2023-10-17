@@ -8,15 +8,16 @@ import {ExtendedSlot} from "./classes/slot.ts";
 
 let createEventBtn: HTMLButtonElement = document.querySelector(".addEvent")!;
 let createEventForm: HTMLFormElement = document.querySelector(".createEvent")!;
-//
-// let dateList: HTMLFieldSetElement = document.querySelector(".datesList")!;
-// let addDate: HTMLButtonElement = document.querySelector((".addDate"))!;
+
+let dateList: HTMLFieldSetElement = document.querySelector(".datesList")!;
+let addDate: HTMLButtonElement = document.querySelector((".addDate"))!;
 
 
 export function SetAllListeners() {
 
     AddAnEventListener(createEventBtn, createEventForm);
     CreateEventListener(createEventForm);
+    AddDateInputListener(addDate,dateList);
 }
 
 export function AddAttendeesListener(event: ExtendedEvent) {
@@ -34,7 +35,6 @@ export function AddAttendeesListener(event: ExtendedEvent) {
         saveAttendeesBtn.disabled = false;
     });
 }
-
 function AddAnEventListener(addEventBtn: HTMLButtonElement, form: HTMLFormElement) {
     addEventBtn.addEventListener('click', function () {
 
@@ -62,6 +62,7 @@ export function CancelButtonListener(event:ExtendedEvent) {
     });
 }
 export function SaveAttendeesListener(event:ExtendedEvent) {
+    // @ts-ignore
     let evenCard:HTMLDivElement = document.getElementById(event.id)!;
     let saveAttendeeBtn: HTMLButtonElement = evenCard.querySelector(".saveAttendees")!;
     let cancelBtn: HTMLButtonElement = evenCard.querySelector(".cancelEventModif")!;
@@ -94,6 +95,7 @@ function CreateEventListener(createForm: HTMLFormElement) {
         let author: string = authorEl.value;
         let descriptionEL: HTMLInputElement = document.querySelector("#eventDescription")!;
         let description: string = descriptionEL.value;
+        // @ts-ignore
         let dateFields: NodeListOf<HTMLInputElement> = document.getElementsByName("createEventDate")!;
         let dates: Date[] = [];
 
@@ -112,6 +114,16 @@ function CreateEventListener(createForm: HTMLFormElement) {
 
 }
 
+function AddDateInputListener(addDateButton: HTMLButtonElement, dateList: HTMLFieldSetElement) {
+
+    addDateButton.addEventListener("click", function (e) {
+        e.preventDefault();
+        let input = document.createElement("input");
+        input.setAttribute("type", "date");
+        input.setAttribute("name", "createEventDate");
+        dateList.appendChild(input);
+    });
+}
 export function EditAnEventListener(event:ExtendedEvent){
     let evenCard:HTMLDivElement = document.getElementById(event.id)!;
     let editEventBtn: HTMLButtonElement = evenCard.querySelector(".editEventBtn")!;
@@ -121,16 +133,6 @@ export function EditAnEventListener(event:ExtendedEvent){
     })
 }
 
-// function AddDateInputListener(addDateButton: HTMLButtonElement, dateList: HTMLFieldSetElement) {
-//
-//     addDateButton.addEventListener("click", function (e) {
-//         e.preventDefault();
-//         let input = document.createElement("input");
-//         input.setAttribute("type", "date");
-//         input.setAttribute("name", "createEventDate");
-//         dateList.appendChild(input);
-//     });
-// }
 
 
 
