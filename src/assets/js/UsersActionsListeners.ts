@@ -24,18 +24,14 @@ export function AddAttendeesListener(event: ExtendedEvent) {
     let evenCard = document.getElementById(event.id)!;
     let addAttendeeBtn: HTMLButtonElement = evenCard.querySelector(".card-footer")!
         .querySelector(".addAttendeesBtn")!;
-    let saveEventBtn: HTMLButtonElement = evenCard.querySelector("button.saveEvent")!;
+    let saveAttendeesBtn: HTMLButtonElement = evenCard.querySelector("button.saveAttendees")!;
     let cancelEventBtn: HTMLButtonElement = evenCard.querySelector("button.cancelEventModif")!;
 
     addAttendeeBtn.addEventListener("click", function (e) {
         e.preventDefault();
-
-        let newAttendeeEl = DisplayAddAttendeeForm(event);
-        EnableCancelButton(cancelEventBtn, newAttendeeEl);
-
-        //TODO validation here
-        EnableSaveAttendeesButton(event.id,event.dates,saveEventBtn,newAttendeeEl);
-
+        DisplayAddAttendeeForm(event);
+        cancelEventBtn.disabled=false;
+        saveAttendeesBtn.disabled = false;
     });
 }
 
@@ -56,11 +52,20 @@ function EnableCancelButton(cancelEventBtn: HTMLButtonElement, element: HTMLElem
             element.parentNode.removeChild(element);
     });
 }
-function EnableSaveAttendeesButton(eventId:string, eventSlots:ExtendedSlot[],saveEventBtn: HTMLButtonElement, newAttendeeEl: HTMLTableRowElement) {
-
-    saveEventBtn.disabled = false;
-    saveEventBtn.addEventListener('click', async function(){
-       await CreateAttendee(eventId,eventSlots,newAttendeeEl);
+export function SaveAttendeesListener(event:ExtendedEvent) {
+    let evenCard:HTMLDivElement = document.getElementById(event.id)!;
+    let saveAttendeeBtn: HTMLButtonElement = evenCard.querySelector(".saveAttendees")!;
+    
+    saveAttendeeBtn.addEventListener('click', async function(){
+        let newAttendeesElements: NodeListOf<HTMLTableRowElement> = evenCard.querySelectorAll(".attendeeInfo[editing='true']");
+       
+        if(newAttendeesElements!==null && newAttendeesElements.length>0){
+            
+            for (const attendee of newAttendeesElements) {
+                await CreateAttendee(event.id,event.dates,attendee);
+            }
+        }
+       
     })
     
 }

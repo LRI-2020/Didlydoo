@@ -47,7 +47,7 @@ function SetAvailability(availabilityEl: HTMLTableCellElement, available: undefi
 
 function DisplayAvailability(date:Date, name:string, event:ExtendedEvent){
     
-    let availabilityEl = AvailibityHtmlStruc(date);
+    let availabilityEl = AvailibityHtmlStruc(date,name,event.id);
     let available = GetAvailabilityForDate(date,name, event);
     SetAvailability(availabilityEl, available);   
    

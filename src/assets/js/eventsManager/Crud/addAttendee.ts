@@ -12,7 +12,7 @@ export function DisplayAddAttendeeForm(event: ExtendedEvent) {
 
     for (let date of event.dates) {
 
-        let availabilityEl = AvailibityHtmlStruc(date.date);
+        let availabilityEl = AvailibityHtmlStruc(date.date,"", event.id);
         nameEl.appendChild(availabilityEl);
     }
 
@@ -26,7 +26,7 @@ export async function CreateAttendee(eventId: string, eventDates: ExtendedSlot[]
     let bodyRequest =
         {
             name: nameInput.value,
-            dates: createDatesForAttendee(eventDates, newAttendeeEl)
+            dates: createDatesForAttendee(eventId,eventDates, newAttendeeEl)
         };
 
     const httpHeaders = {
@@ -49,18 +49,18 @@ export async function CreateAttendee(eventId: string, eventDates: ExtendedSlot[]
 
 }
 
-function createDatesForAttendee(slots: ExtendedSlot[], newAttendeeEl: HTMLTableRowElement) {
+function createDatesForAttendee(eventId:string,slots: ExtendedSlot[], newAttendeeEl: HTMLTableRowElement) {
     let datesForAttendee: any[] = [];
     slots.forEach(s => {
-        let dateForAttendee = CreateDateForAttendee(s.date, newAttendeeEl);
+        let dateForAttendee = CreateDateForAttendee(eventId,s.date, newAttendeeEl);
         if (dateForAttendee !== null && dateForAttendee !== undefined)
             datesForAttendee.push(dateForAttendee);
     });
 
     return datesForAttendee;
 }
-function CreateDateForAttendee(d: Date, newAttendeeEl: HTMLTableRowElement) {
-    let selectId = `availability_${d.getTime()}`;
+function CreateDateForAttendee(eventId:string, d: Date, newAttendeeEl: HTMLTableRowElement) {
+    let selectId = `availability_${eventId}__${d.getTime()}`;
     let availableOpt: HTMLSelectElement = newAttendeeEl.querySelector("select#" + CSS.escape(selectId))!;
     let formattedDate = `${d.getFullYear()}-${formatMonth(d.getMonth())}-${formatDay(d.getDate())}`;
     switch (availableOpt.value) {

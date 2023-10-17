@@ -4,7 +4,7 @@ export function NameHtmlStruc(name: string, readOnly:boolean) {
 
     let attendeeEl: HTMLTableRowElement = document.createElement("tr")!;
     attendeeEl.classList.add("attendeeInfo");
-
+    attendeeEl.setAttribute("Editing",(!readOnly).toString());
     let nameEl: HTMLTableCellElement = document.createElement("td")!;
     nameEl.classList.add("attendeeName");
     let nameInput = document.createElement("input");
@@ -19,12 +19,12 @@ export function NameHtmlStruc(name: string, readOnly:boolean) {
     return attendeeEl;
 }
 
-export function AvailibityHtmlStruc(date: Date) {
+export function AvailibityHtmlStruc(date: Date, name:string, eventId:string) {
     let availabilityEl:HTMLTableCellElement = document.createElement("td")!;
     availabilityEl.classList.add("attendeeAvailability");
 
     let select = document.createElement("select");
-    select.setAttribute("id",`availability_${date.getTime()}`);
+    select.setAttribute("id",`availability_${eventId}_${name}_${date.getTime()}`);
 
     let availableOpt = document.createElement("option");
     availableOpt.setAttribute("value","true");
