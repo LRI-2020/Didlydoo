@@ -42,8 +42,6 @@ function AddAnEventListener(addEventBtn: HTMLButtonElement, form: HTMLFormElemen
 
     });
 }
-
-
 export function CancelButtonListener(event:ExtendedEvent) {
     let evenCard = document.getElementById(event.id)!;
     let cancelBtn:HTMLButtonElement = evenCard.querySelector("button.cancelEventModif")!;
@@ -112,6 +110,15 @@ function CreateEventListener(createForm: HTMLFormElement) {
 
     });
 
+}
+
+export function EditAnEventListener(event:ExtendedEvent){
+    let evenCard:HTMLDivElement = document.getElementById(event.id)!;
+    let editEventBtn: HTMLButtonElement = evenCard.querySelector(".editEventBtn")!;
+    
+    editEventBtn.addEventListener('click',function(){
+        DisplayEditEventForm();
+    })
 }
 
 // function AddDateInputListener(addDateButton: HTMLButtonElement, dateList: HTMLFieldSetElement) {

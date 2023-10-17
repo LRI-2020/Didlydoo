@@ -1,9 +1,11 @@
 ﻿
 export let eventTemp = `        
-            <div class="card-header">
-                <h2 class="eventName">Event NAme</h2>
-                <h3 class="eventAuthor"> Author name</h3>
-                <p class="eventDesc">une longue description d'une veent ou pas</p>
+            <div class="card-header d-flex flex-row justify-content-between">
+            <div> <h2 class="eventName"></h2>
+                <h5 class="eventAuthor"></h5>
+                <p class="eventDesc"></p>
+            </div>
+            <button class="btn btn-secondary editEventBtn align-self-center">Edit</button>
             </div>
             <div class="card-body">
                 <table class="table">
